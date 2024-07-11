@@ -3,25 +3,32 @@
 ```
 source activate qiime2-2023.5
 
-cd /hpcstor6/scratch01/p/patrick.kearns/June24_16S
-
+#commented out part is what I did to import/demux in QIIME2
 #load raw FASTQ reads into QIIME
-qiime tools import --type EMPSingleEndSequences --input-path ./data --output-path adan_seqs.qza
+#qiime tools import --type EMPSingleEndSequences --input-path ./data --output-path adan_seqs.qza
 
 #demultiplex reads
-qiime demux emp-single \
-  --i-seqs adan_seqs.qza \
+#qiime demux emp-single \
+#  --i-seqs adan_seqs.qza \
  --m-barcodes-file adan_soil_map_run2.txt \
  --m-barcodes-column BarcodeSequence \
   --o-per-sample-sequences adan_demux.qza \
   --o-error-correction-details  adan-details.qza \
   --p-no-golay-error-correction 
   
+  #import both runs for analysis
+ qiime tools import \
+  --type 'SampleData[SequencesWithQuality]' \
+  --input-path manifest.txt \
+  --output-path vieques-demux.qza \
+  --input-format SingleEndFastqManifestPhred33V2 
+  
 #quality filer
 qiime quality-filter q-score \
 --i-demux  adan_demux.qza \
 --o-filtered-sequences  adan_demux-filtered.qza \
---o-filter-stats  adandemux-filter-stats.qza 
+--o-filter-stats  adandemux-filter-stats.qza \
+--q-score 25
 
  
  #export filter stats
