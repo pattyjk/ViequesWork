@@ -50,3 +50,15 @@ Tobacco.B2	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run2_fastq/Tobacco.
 Tobacco.B3	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run2_fastq/Tobacco.B3_22_L001_R1_001.fastq.gz
 Tobacco.B4	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run2_fastq/Tobacco.B4_25_L001_R1_001.fastq.gz
 Tobacco.B5	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run2_fastq/Tobacco.B5_28_L001_R1_001.fastq.gz
+C1	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/C1_10_L001_R1_001.fastq.gz
+C2	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/C2_6_L001_R1_001.fastq.gz
+C3	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/C3_3_L001_R1_001.fastq.gz
+G1	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/G1_12_L001_R1_001.fastq.gz
+G2	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/G2_9_L001_R1_001.fastq.gz
+G3	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/G3_8_L001_R1_001.fastq.gz
+M1	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/M1_7_L001_R1_001.fastq.gz
+M2	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/M2_11_L001_R1_001.fastq.gz
+M3	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/M3_4_L001_R1_001.fastq.gz
+S1	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/S1_1_L001_R1_001.fastq.gz
+S2	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/S2_2_L001_R1_001.fastq.gz
+S3	/hpcstor6/scratch01/p/patrick.kearns/Vieques_soil/Run3_fastq/S3_5_L001_R1_001.fastq.gz
