@@ -64,12 +64,14 @@ ggplot(ko.coords, aes(MDS1, MDS2, label=SampleID, color=Soil))+
 
 #plot PCoA for just Composta samples
 ggplot(ko.coords[which(ko.coords$Soil == 'Composta'),], aes(MDS1, MDS2, color=PlantSpecies, label=SampleID))+
- # geom_point(size=2.7)+
-  geom_text()+
+ geom_point(size=2.7)+
+ # geom_text()+
   theme_bw()+
   ylab("PC2- 12.1%")+
   guides(alpha = "none")+
-  xlab("PC1- 30.0%")
+  xlab("PC1- 30.0%")+
+  ylim(c(-0.1, 0.2))+
+  xlim(c(-0.6,-0.3))
 
 #plot PCoA for just La Semillera
 ggplot(ko.coords[-which(ko.coords$Soil == 'Composta'),], aes(MDS1, MDS2, color=PlantSpecies, label=SampleID))+
