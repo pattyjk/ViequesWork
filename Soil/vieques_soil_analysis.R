@@ -24,6 +24,7 @@ vieq.alph<-merge(vieq.alph, meta, by='SampleID')
 
 ggplot(vieq.alph, aes(PlantSpecies, `diversity(otu_rare, index = "shannon")`, fill=Soil))+
   geom_boxplot()+
+  coord_flip()+
   theme_bw()+
   ylab('Shannon Diversity')+
   xlab("")
@@ -48,40 +49,36 @@ ko.coords<-merge(ko.coords, meta, by.x='SampleID', by.y='SampleID')
 
 #calculate percent variation explained for first two axis
 100*round(ko_pcoa$CA$eig[1]/sum(ko_pcoa$CA$eig), 3)
-#29.9
+#31.2
 100*round(ko_pcoa$CA$eig[2]/sum(ko_pcoa$CA$eig), 3)
-#12.2
+#12.5
 
-
-
-ggplot(ko.coords, aes(MDS1, MDS2, color=PlantSpecies, label=SampleID, shape=Soil))+
-  #geom_point(size=2.7)+
-  geom_text()+
+#plot all samples
+ggplot(ko.coords, aes(MDS1, MDS2, label=SampleID, color=Soil))+
+  geom_point(size=2.7)+
+  #geom_text()+
   theme_bw()+
-  ylab("PC2- 12.1%")+
+  ylab("PC2- 12.2%")+
   guides(alpha = "none")+
-  xlab("PC1- 30.0%")
+  xlab("PC1- 31.2%")
 
-#plot PCoA
+#plot PCoA for just Composta samples
 ggplot(ko.coords[which(ko.coords$Soil == 'Composta'),], aes(MDS1, MDS2, color=PlantSpecies, label=SampleID))+
  # geom_point(size=2.7)+
   geom_text()+
   theme_bw()+
   ylab("PC2- 12.1%")+
   guides(alpha = "none")+
-  xlab("PC1- 30.0%")+
-  ylim(c(-0.5,.25))+
-  xlim(c(-.75,0))
+  xlab("PC1- 30.0%")
 
+#plot PCoA for just La Semillera
 ggplot(ko.coords[-which(ko.coords$Soil == 'Composta'),], aes(MDS1, MDS2, color=PlantSpecies, label=SampleID))+
   # geom_point(size=2.7)+
   geom_text()+
   theme_bw()+
   ylab("PC2- 12.1%")+
   guides(alpha = "none")+
-  xlab("PC1- 30.0%")+
-  xlim(c(1,1.5))+
-  ylim(c(-.75,-1.25))
+  xlab("PC1- 30.0%")
 
 #adonis time, La Sem only
 meta_composta<-meta[-which(meta$Soil == 'Composta'),]
