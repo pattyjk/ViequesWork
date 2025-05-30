@@ -62,25 +62,50 @@ ggplot(ko.coords, aes(MDS1, MDS2, label=SampleID, color=Soil))+
   guides(alpha = "none")+
   xlab("PC1- 31.2%")
 
-#plot PCoA for just Composta samples
-ggplot(ko.coords[which(ko.coords$Soil == 'Composta'),], aes(MDS1, MDS2, color=PlantSpecies, label=SampleID))+
- geom_point(size=2.7)+
- # geom_text()+
-  theme_bw()+
-  ylab("PC2- 12.1%")+
-  guides(alpha = "none")+
-  xlab("PC1- 30.0%")+
-  ylim(c(-0.1, 0.2))+
-  xlim(c(-0.6,-0.3))
+#beta diversity for erach site only
+meta_com<-meta[which(meta$Soil == 'Composta'),]
+meta_sem<-meta[-which(meta$Soil == 'Composta'),]
 
-#plot PCoA for just La Semillera
-ggplot(ko.coords[-which(ko.coords$Soil == 'Composta'),], aes(MDS1, MDS2, color=PlantSpecies, label=SampleID))+
-  # geom_point(size=2.7)+
-  geom_text()+
+otu_comp<-asv.tbl[,names(asv.tbl) %in% meta_com$SampleID]
+otu_sem<-asv.tbl[,names(asv.tbl) %in% meta_sem$SampleID]
+
+#rarefy and calculate beta div
+comp_pcoa<-capscale(t(otu_comp) ~1, distance = 'bray')
+sem_pcoa<-capscale(t(otu_sem) ~1, distance='bray')
+
+#pull out x/y coordinates
+sem.scores<-scores(sem_pcoa)
+comp.scores<-scores(comp_pcoa)
+
+#grab only sample coordinates, write to data frame
+sem.coords<-as.data.frame(sem.scores$sites)
+comp.coords<-as.data.frame(comp.scores$sites)
+
+#create sample names as a column
+sem.coords$SampleID<-row.names(sem.coords)
+comp.coords$SampleID<-row.names(comp.coords)
+
+#map back meta data
+sem.coords<-merge(sem.coords, meta, by.x='SampleID', by.y='SampleID', all.y=F)
+comp.coords<-merge(comp.coords, meta, by.x='SampleID', by.y='SampleID', all.y=F)
+
+ggplot(sem.coords, aes(MDS1, MDS2, label=SampleID, color=PlantSpecies))+
+  geom_point(size=2.7)+
+  #geom_text()+
   theme_bw()+
-  ylab("PC2- 12.1%")+
+  ylab("PC2- 12.2%")+
+  ggtitle("La Semillera")+
   guides(alpha = "none")+
-  xlab("PC1- 30.0%")
+  xlab("PC1- 31.2%")
+
+ggplot(comp.coords, aes(MDS1, MDS2, label=SampleID, color=PlantSpecies))+
+  geom_point(size=2.7)+
+  ggtitle('Conposta')+
+  #geom_text()+
+  theme_bw()+
+  ylab("PC2- 12.2%")+
+  guides(alpha = "none")+
+  xlab("PC1- 31.2%")
 
 #adonis time, La Sem only
 meta_composta<-meta[-which(meta$Soil == 'Composta'),]
